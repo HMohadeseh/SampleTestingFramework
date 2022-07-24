@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProductsTestSuite">
+    <test name="addProduct">
+        <parameter name="username" value="standard_user"></parameter>
+        <parameter name="password" value="secret_sauce"></parameter>
+        <groups>
+            <run>
+                <include name="addProductsToCart"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.one.ProductsTest"></class>
+        </classes>
+    </test>
+</suite>

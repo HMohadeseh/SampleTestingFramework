@@ -1,6 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name = "LoginTestSuite">
     <test name = "LoginPage">
+        <parameter name="username" value="standard_user"></parameter>
+        <parameter name="password" value="secret_sauce"></parameter>
         <groups>
             <run>
                 <include name = "page_elements" />
@@ -72,6 +74,32 @@
         </groups>
         <classes>
             <class name = "com.one.LoginTest"/>
+        </classes>
+    </test>
+    <test name="LoginSmokeTestNullUsername">
+        <parameter name="username" value=""></parameter>
+        <parameter name="password" value="secret_sauce"></parameter>
+        <parameter name="message" value="Username is required"></parameter>
+        <groups>
+            <run>
+                <include name="invalid"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.one.LoginTest"></class>
+        </classes>
+    </test>
+    <test name="LoginSmokeTestNullPassword">
+        <parameter name="username" value="standard_user"></parameter>
+        <parameter name="password" value=""></parameter>
+        <parameter name="message" value="Password is required"></parameter>
+        <groups>
+            <run>
+                <include name="invalid"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.one.LoginTest"></class>
         </classes>
     </test>
 </suite>

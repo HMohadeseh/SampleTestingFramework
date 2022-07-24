@@ -20,7 +20,8 @@ public enum XPathSelector implements Supplier<By> {
     INVENTORY_ITEMS_DETAILS("//div[contains(@class,'inventory_item_')]/a"),
     INVENTORY_LIST("//div[@class='inventory_list']"),
     INVENTORY_ITEM("//div[@class='inventory_item']"),
-    INVENTORY_ITEM_NAME("//div[@class='inventory_item_name']")
+    INVENTORY_ITEM_NAME("//div[@class='inventory_item_name']"),
+    ITEM_TITLE("//a[@id='item_3_title_link']//div")
 
 ;
 

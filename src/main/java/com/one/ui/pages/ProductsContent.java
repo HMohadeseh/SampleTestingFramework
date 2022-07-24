@@ -13,8 +13,9 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.one.locators.ClassName.SHOPPING_CART_BADGE;
 import static com.one.locators.ClassName.SORT;
-import static com.one.locators.Id.INVENTORY_CONTAINER;
+import static com.one.locators.Id.*;
 import static com.one.locators.XPathSelector.*;
 
 public class ProductsContent {
@@ -38,6 +39,10 @@ public class ProductsContent {
 
     public Product getProductFromPosition(int row) {
         return getProductsList().get(row);
+    }
+
+    public Product getProductByName(String name) {
+        return getProductsList().stream().filter(p -> p.getName().equals(name)).findAny().orElse(null);
     }
 
     private List<Product> getProductsList() {
@@ -68,4 +73,21 @@ public class ProductsContent {
     public void sortBy(String criteria){
         browser.selectByVisibleText(SORT, criteria);
     }
+
+    public void addToCart() {
+        browser.click(ADD_TO_CART);
+    }
+
+    public String getItemText() {
+        return browser.getText(ITEM_TITLE);
+    }
+
+    public String getButtonText() {
+        return browser.getText(REMOVE_BUTTON);
+    }
+
+    public String getShoppingCartBadge() {
+        return browser.getText(SHOPPING_CART_BADGE);
+    }
+
 }

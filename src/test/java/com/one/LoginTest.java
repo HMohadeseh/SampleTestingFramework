@@ -40,17 +40,17 @@ public class LoginTest extends AbstractTestNGSpringContextTests {
         Reporter.log("Verify elements on login page");
         loginForm.openPage();
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginForm.getPlaceholderTextUsername().matches("Username"), "Wrong placeholder for username");
-        softAssert.assertTrue(loginForm.getPlaceholderTextPassword().matches("Password"), "Wrong placeholder for password");
-        softAssert.assertTrue(loginForm.getLoginButtonText().matches("Login"), "Wrong login button text or login button not found");
-        softAssert.assertTrue(loginForm.isLogoDisplayed(), "Logo class not found");
+        softAssert.assertTrue(loginForm.getPlaceholderTextUsername().matches("Username"), "Username");
+        softAssert.assertTrue(loginForm.getPlaceholderTextPassword().matches("Password"), "Password");
+        softAssert.assertTrue(loginForm.getLoginButtonText().matches("Login"), "Login");
+        softAssert.assertTrue(loginForm.isLogoDisplayed(), "login_logo");
     }
 
     @Test(groups = "valid")
     public void verifyLogin() {
         inventory = new Inventory(browser);
         assertTrue(inventory.isProductLabelPresent(), "Product label not displayed");
-        assertTrue(inventory.getProductLabel().matches("Products"));
+        assertTrue(inventory.getProductLabel().matches("PRODUCTS"));
     }
 
     @Test(groups = "logout")
@@ -58,7 +58,8 @@ public class LoginTest extends AbstractTestNGSpringContextTests {
         header =  new Header(browser);
         menu = new Menu(browser);
         header.openMenu();
-        assertTrue(menu.isLogoutVisible(), "Logout link not visible");
+        assertTrue(menu.isCloseMenuVisible(),"Close Menu");
+        assertTrue(menu.isLogoutVisible(), "Logout");
         Reporter.log("Verify logout");
         menu.clickLogout();
         assertTrue(loginForm.isLoginDisplayed(), "Login button not found after logout");
@@ -77,7 +78,7 @@ public class LoginTest extends AbstractTestNGSpringContextTests {
 
     }
 
-   // @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     @BeforeGroups(groups = { "valid", "lockedout", "invalid" })
     @Parameters({"username", "password", "message"})
     public void beforeTestMethod(String username, String password, @Optional String message) {
